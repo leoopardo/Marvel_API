@@ -7,10 +7,12 @@ import { AppSidebar } from "./components/AppSidebar";
 import { I18nextProvider } from "react-i18next";
 import { GlobalStyle } from "./styles/globalStyles";
 import { defaultTheme } from "./styles/defaultTheme";
+import { useMediaQuery } from "react-responsive";
 
 const { Content } = Layout;
 
 function App() {
+  const mobile = useMediaQuery({ maxWidth: "750px" });
   return (
     <I18nextProvider i18n={i18n} defaultNS={"translation"}>
       <ThemeProvider theme={defaultTheme}>
@@ -20,6 +22,7 @@ function App() {
               token: {
                 colorPrimary: defaultTheme.colors.secondary,
                 colorBgTextHover: defaultTheme.colors.secondary,
+
               },
             }}
           >
@@ -28,7 +31,7 @@ function App() {
               <Content
                 style={{
                   padding: "24px",
-                  marginLeft: "50px",
+                  marginLeft: mobile ? undefined : "50px",
                   minHeight: 280,
                   backgroundColor: "#202020",
                 }}

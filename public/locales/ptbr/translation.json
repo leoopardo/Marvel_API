@@ -3,5 +3,13 @@
     "characters": "Personagens",
     "comics": "Quadrinhos",
     "movies": "Filmes"
+  },
+  "messages": {
+    "404": "Desculpe, a página que você visitou não existe",
+    "400": "Nenhum registro encontrado",
+    "500": "Algo deu errado, tente novamente mais tarde"
+  },
+  "input": {
+    "search": "Perquisar personagem"
   }
 }

@@ -22,6 +22,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color:  #F9FAFC;
+  overflow: hidden;
 }
 
 h1 {

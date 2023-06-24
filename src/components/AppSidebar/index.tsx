@@ -42,6 +42,7 @@ export const AppSidebar = () => {
       label: "",
       style: {
         height: "100px",
+        marginBottom: !mobile ? "25px" : undefined,
       },
       disabled: true,
     },
@@ -53,7 +54,7 @@ export const AppSidebar = () => {
         fontSize: "18px",
         fontFamily: "sans-serif",
         display: "flex",
-       
+
         alignItems: "center",
       },
       onClick: handleNavigate,
@@ -79,7 +80,7 @@ export const AppSidebar = () => {
         fontSize: "18px",
         fontFamily: "sans-serif",
         display: "flex",
-     
+
         alignItems: "center",
       },
       onClick: handleNavigate,
