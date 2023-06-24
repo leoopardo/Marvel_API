@@ -1,5 +1,4 @@
-import { QueryCache, QueryClient } from "react-query";
-import i18n from "../i18n";
+import { QueryClient } from "react-query";
 
 export const queryClient = new QueryClient({
   defaultOptions: {

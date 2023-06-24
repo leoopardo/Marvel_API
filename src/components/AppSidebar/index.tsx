@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, MenuProps, Layout } from "antd";
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { useTranslation } from "react-i18next";
 import Logo from "../../assets/logo.svg";
@@ -20,7 +15,7 @@ export const AppSidebar = () => {
   const mobile = useMediaQuery({ maxWidth: "750px" });
   const navigate = useNavigate();
   const location = useLocation();
-  const [active, setActive] = useState<string>("characters");
+  const [active] = useState<string>("characters");
 
   const handleNavigate = (options: { key: string; keyPath: string[] }) => {
     navigate(options.keyPath.join("/"), {

@@ -1,4 +1,3 @@
-import React from "react";
 import { Result } from "antd";
 import notFound from "../../assets/notfount.png";
 import { useTranslation } from "react-i18next";

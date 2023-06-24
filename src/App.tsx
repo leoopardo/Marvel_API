@@ -5,7 +5,6 @@ import { Layout, ConfigProvider } from "antd";
 import { ThemeProvider } from "styled-components";
 import { AppSidebar } from "./components/AppSidebar";
 import { I18nextProvider } from "react-i18next";
-import { GlobalStyle } from "./styles/globalStyles";
 import { defaultTheme } from "./styles/defaultTheme";
 import { useMediaQuery } from "react-responsive";
 
