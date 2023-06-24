@@ -5,6 +5,6 @@ export const defaultTheme: DefaultTheme = {
     dark: "#1a1a1a",
     text: "##F9FAFC",
     primary: "#002d5c",
-    secondary: "#ED1D24",
+    secondary: "#FA5252",
   },
 };

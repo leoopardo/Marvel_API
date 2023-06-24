@@ -1,1 +1,7 @@
-{ "messages": { "hello": "Olá" } }
+{
+  "menu": {
+    "characters": "Personagens",
+    "comics": "Quadrinhos",
+    "movies": "Filmes"
+  }
+}

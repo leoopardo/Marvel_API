@@ -1,46 +1,126 @@
-import React from "react";
-import { Menu, MenuProps } from "antd";
+import React, { useState, useEffect } from "react";
+import { Menu, MenuProps, Layout } from "antd";
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
 import { defaultTheme } from "../../styles/defaultTheme";
+import { useTranslation } from "react-i18next";
+import Logo from "../../assets/logo.svg";
+import Spider from "../../assets/icons/spider-man.svg";
+import Panter from "../../assets/icons/black-panter.svg";
+import Iron from "../../assets/icons/iron-man.svg";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+const { Sider, Header } = Layout;
 
 export const AppSidebar = () => {
+  const { t } = useTranslation();
+  const mobile = useMediaQuery({ maxWidth: "750px" });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [active, setActive] = useState<string>("characters");
+
+  const handleNavigate = (options: { key: string; keyPath: string[] }) => {
+    navigate(options.keyPath.join("/"), {
+      state: { from: location },
+      replace: true,
+    });
+  };
+
   const items: MenuProps["items"] = [
-    UserOutlined,
-    LaptopOutlined,
-    NotificationOutlined,
-  ].map((icon, index) => {
-    const key = String(index + 1);
+    {
+      key: "",
+      icon: (
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <img src={Logo} alt="" style={{ width: "80%" }} />
+        </div>
+      ),
+      label: "",
+      style: {
+        height: "100px",
+      },
+      disabled: true,
+    },
+    {
+      key: "characters",
+      icon: <img src={Iron} alt="iron-man" style={{ height: 30 }} />,
+      label: t("menu.characters"),
+      style: {
+        fontSize: "18px",
+        fontFamily: "sans-serif",
+        display: "flex",
+       
+        alignItems: "center",
+      },
+      onClick: handleNavigate,
+    },
+    {
+      key: "comics",
+      icon: <img src={Panter} alt="iron-man" style={{ height: 30 }} />,
+      label: t("menu.comics"),
+      style: {
+        fontSize: "18px",
+        fontFamily: "sans-serif",
+        display: "flex",
 
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
+        alignItems: "center",
+      },
+      onClick: handleNavigate,
+    },
+    {
+      key: "movies",
+      icon: <img src={Spider} alt="iron-man" style={{ height: 32 }} />,
+      label: t("menu.movies"),
+      style: {
+        fontSize: "18px",
+        fontFamily: "sans-serif",
+        display: "flex",
+     
+        alignItems: "center",
+      },
+      onClick: handleNavigate,
+    },
+  ];
 
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  });
-  return (
-    <Menu
-      mode="inline"
-      defaultSelectedKeys={["1"]}
-      defaultOpenKeys={["sub1"]}
+  return !mobile ? (
+    <Sider style={{ display: "flex", alignItems: "center" }}>
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={[active]}
+        style={{
+          height: "100%",
+          width: "250px",
+          backgroundColor: defaultTheme.colors.dark,
+        }}
+        items={items}
+        theme="dark"
+      />
+    </Sider>
+  ) : (
+    <Header
       style={{
-        height: "100%",
-        width: "200px",
-        backgroundColor: defaultTheme.colors.dark,
+        display: "flex",
+        alignItems: "center",
+        padding: 0,
+        margin: 0,
+        height: "80px",
       }}
-      items={items}
-      theme="dark"
-    />
+    >
+      <Menu
+        mode="horizontal"
+        defaultSelectedKeys={[active]}
+        style={{
+          height: "100%",
+          width: "100%",
+          backgroundColor: defaultTheme.colors.dark,
+        }}
+        items={items}
+        theme="dark"
+      />
+    </Header>
   );
 };

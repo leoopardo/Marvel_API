@@ -1,12 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
-import { AppRoutes } from "./routes";import i18n from "./i18n";
+import { AppRoutes } from "./routes";
+import i18n from "./i18n";
 import { Layout, ConfigProvider } from "antd";
 import { ThemeProvider } from "styled-components";
 import { AppSidebar } from "./components/AppSidebar";
 import { I18nextProvider } from "react-i18next";
 import { GlobalStyle } from "./styles/globalStyles";
 import { defaultTheme } from "./styles/defaultTheme";
-const { Sider, Content } = Layout;
+
+const { Content } = Layout;
 
 function App() {
   return (
@@ -21,16 +23,19 @@ function App() {
               },
             }}
           >
-          
-              <Layout style={{ height: "100vh", }}>
-                <Sider style={{ display: "flex", alignItems: "center" }}>
-                  <AppSidebar />
-                </Sider>
-                <Content style={{ padding: "0 24px", minHeight: 280 }}>
-                  <AppRoutes />
-                </Content>
-              </Layout>
-       
+            <Layout style={{ height: "100vh" }}>
+              <AppSidebar />
+              <Content
+                style={{
+                  padding: "24px",
+                  marginLeft: "50px",
+                  minHeight: 280,
+                  backgroundColor: "#202020",
+                }}
+              >
+                <AppRoutes />
+              </Content>
+            </Layout>
           </ConfigProvider>
         </BrowserRouter>
       </ThemeProvider>

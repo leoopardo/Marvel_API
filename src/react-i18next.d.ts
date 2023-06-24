@@ -1,8 +1,8 @@
 // import the original type declarations
 import "react-i18next";
 // import all namespaces (for the default language, only)
-import en from "../public/locales/en/en.json";
-import ptbr from "../public/locales/ptbr/pt-BR.json";
+import en from "../public/locales/en/translation.json";
+import ptbr from "../public/locales/ptbr/translation.json";
 
 // react-i18next versions lower than 11.11.0
 declare module "react-i18next" {
