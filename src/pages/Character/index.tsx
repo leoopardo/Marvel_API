@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCharacter } from "../../service/characters/getCharacter";
 import { Row, Col, Typography } from "antd";
@@ -7,7 +8,7 @@ const { Title } = Typography;
 
 export const Character = () => {
   const { id } = useParams();
-  const { character, error, isFetching, refetch } = useGetCharacter(id);
+  const { character, refetch } = useGetCharacter(id);
 
   useEffect(() => {
     refetch();

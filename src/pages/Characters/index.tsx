@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef } from "react";
 import { CharactersQuery } from "../../service/types/characters/characters.interface";
 import { useGetCharacters } from "../../service/characters/getCharacters";
@@ -109,7 +111,7 @@ export const Characters = () => {
       >
         {isFetching &&
           !characters &&
-          isFetchingArray.map((_, j) => (
+          isFetchingArray.map(() => (
             <Card loading hoverable style={{ width: 240 }} />
           ))}
         {!isError &&
