@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, MenuProps, Layout } from "antd";
+import { Menu, MenuProps, Layout, Badge } from "antd";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { useTranslation } from "react-i18next";
 import Logo from "../../assets/logo.svg";
@@ -72,7 +72,13 @@ export const AppSidebar = () => {
     {
       key: "comics",
       icon: <img src={Panter} alt="iron-man" style={{ height: 30 }} />,
-      label: t("menu.comics"),
+      label: (
+        <Badge.Ribbon text={t("messages.soon")}>
+          <div style={{ height: "50px", width: "160px" }}>
+            {t("menu.comics")}
+          </div>
+        </Badge.Ribbon>
+      ),
       style: {
         fontSize: "18px",
         fontFamily: "sans-serif",
@@ -80,12 +86,19 @@ export const AppSidebar = () => {
 
         alignItems: "center",
       },
+      disabled: true,
       onClick: handleNavigate,
     },
     {
       key: "movies",
       icon: <img src={Spider} alt="iron-man" style={{ height: 32 }} />,
-      label: t("menu.movies"),
+      label: (
+        <Badge.Ribbon text={t("messages.soon")}>
+          <div style={{ height: "50px", width: "160px" }}>
+            {t("menu.movies")}
+          </div>
+        </Badge.Ribbon>
+      ),
       style: {
         fontSize: "18px",
         fontFamily: "sans-serif",
@@ -93,6 +106,7 @@ export const AppSidebar = () => {
 
         alignItems: "center",
       },
+      disabled: true,
       onClick: handleNavigate,
     },
     {

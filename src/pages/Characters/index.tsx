@@ -11,6 +11,8 @@ import { defaultTheme } from "../../styles/defaultTheme";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import { StyledRow, StyledSpaceCards } from "./style";
+import { motion } from "framer-motion";
 const { Meta } = Card;
 
 export const Characters = () => {
@@ -58,24 +60,22 @@ export const Characters = () => {
         alignItems: "center",
       }}
     >
-      <Row
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "start",
-          marginBottom: 20,
-          paddingLeft: "2%",
-        }}
-      >
-        {" "}
-        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-          <Space.Compact
-            style={{ width: "100%" }}
-            block
-            direction="horizontal"
-            size="large"
-          >
+      <StyledRow>
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={8}
+          xl={8}
+          style={{
+            height: "100px",
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: "4%",
+            justifyContent: "start",
+          }}
+        >
+          <Space.Compact block direction="horizontal" size="large">
             <Input
               ref={searchRef}
               style={{ width: "60%" }}
@@ -94,15 +94,15 @@ export const Characters = () => {
                   orderBy: "name",
                 });
                 refetch();
-                searchRef.current.input.value = ""
-                searchRef.current.input.defaultValue = ""
+                searchRef.current.input.value = "";
+                searchRef.current.input.defaultValue = "";
               }}
             >
               {t("button.remove_filters")}
             </Button>
           </Space.Compact>
         </Col>
-      </Row>
+      </StyledRow>
 
       {characters?.total === 0 && !isError && (
         <Result
@@ -129,19 +129,7 @@ export const Characters = () => {
         />
       )}
 
-      <Space
-        ref={divRef}
-        direction="vertical"
-        size="middle"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          maxHeight: "100%",
-          overflow: "auto",
-        }}
-      >
+      <StyledSpaceCards ref={divRef} direction="vertical" size="large">
         {isFetching &&
           !characters &&
           isFetchingArray.map(() => (
@@ -150,29 +138,40 @@ export const Characters = () => {
         {!isError &&
           characters?.total !== 0 &&
           characters?.results.map((character) => (
-            <Card
-              loading={isFetching}
-              hoverable
-              onClick={
-                !isFetching
-                  ? () => navigate(`/character/${character.id}`)
-                  : undefined
-              }
-              style={{ width: mobile ? "80vw" : 240 }}
-              cover={
-                <img
-                  alt={character.name}
-                  src={`${character.thumbnail.path}/landscape_incredible.${character.thumbnail.extension}`}
-                />
-              }
+            <motion.div
+              whileHover={{
+                scale: 1.2,
+                zIndex: 9999,
+                margin: "20px",
+                transition: { duration: 0.5 },
+              }}
+              whileTap={{ scale: 1.1, margin: 10 }}
+              transition={{bounce: 0.6, type: "spring"}}
             >
-              <Meta
-                title={character.name}
-                description={`${character.description.substring(0, 50)}...`}
-              />
-            </Card>
+              <Card
+                loading={isFetching}
+                hoverable
+                onClick={
+                  !isFetching
+                    ? () => setTimeout(() => navigate(`/character/${character.id}`), 200) 
+                    : undefined
+                }
+                style={{ width: mobile ? "80vw" : 240 }}
+                cover={
+                  <img
+                    alt={character.name}
+                    src={`${character.thumbnail.path}/landscape_incredible.${character.thumbnail.extension}`}
+                  />
+                }
+              >
+                <Meta
+                  title={character.name}
+                  description={`${character.description.substring(0, 50)}...`}
+                />
+              </Card>
+            </motion.div>
           ))}
-      </Space>
+      </StyledSpaceCards>
     </div>
   );
 };
