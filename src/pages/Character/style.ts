@@ -8,10 +8,7 @@ export const ColCard = styled(Col)`
 `;
 
 export const ColCarousel = styled(Col)`
-  display: flex;
-  align-items: center;
-
-  flex-direction: column;
+  
   max-height: 400px;
   overflow: hidden;
   margin-left: 50px;
