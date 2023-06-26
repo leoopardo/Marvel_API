@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCharacter } from "../../service/characters/getCharacter";
-import { Row, Col, Typography, Carousel, Image, Spin } from "antd";
+import { Row, Col, Typography, Carousel, Image } from "antd";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { queryClient } from "../../service/queryClient";
 import { useMediaQuery } from "react-responsive";
@@ -14,9 +14,9 @@ export const Character = () => {
   const { id } = useParams();
   const mobile = useMediaQuery({ maxWidth: 750 });
   const { character, refetch } = useGetCharacter(id);
-  const { comicsColection, comicsColectionRefetch, comicsColectionFetching } =
+  const { comicsColection, comicsColectionRefetch } =
     useGetComicsColection(id);
-  const [cache, setCache] = useState<any>(
+  const [cache] = useState<any>(
     queryClient.getQueryData(["character"])
   );
   const [visible, setVisible] = useState(false);

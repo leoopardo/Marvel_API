@@ -21,7 +21,6 @@ export const Characters = () => {
     limit: 100,
     orderBy: "name",
   });
-  const [search, setSearch] = useState<string>("");
 
   const isFetchingArray = new Array(25).fill(null);
   const divRef = useRef<any>(null);
@@ -95,7 +94,6 @@ export const Characters = () => {
                   orderBy: "name",
                 });
                 refetch();
-                setSearch("");
                 searchRef.current.input.value = ""
                 searchRef.current.input.defaultValue = ""
               }}
