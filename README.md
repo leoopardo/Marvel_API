@@ -9,7 +9,7 @@
 
 # Para executar o projeto:
 ## Pode ser acessado o link do deploy: <a href="https://fpass-marvel.netlify.app/">Fpass Marvel</a>
-##-----------ou-----------
+## ___________________OU________________________
 ### 1- clonar o projeto usando `$ git clone %LINK DO PROJETO%`;
 ### 2- acessar o projeto no terminal de comando;
 ### 3- instalar dependências utilizando o cmd: `$ yarn`;
