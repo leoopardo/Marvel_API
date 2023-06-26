@@ -5,13 +5,13 @@ import { ComicsData } from "../types/characters/colections/comics";
 
 export function useGetComicsColection(id?: string) {
   const md5Hash = md5(
-    `${new Date().getTime()}${import.meta.env.VITE_API_PRIVATE_KEY}${
+    `${new Date().getTime() + 1}${import.meta.env.VITE_API_PRIVATE_KEY}${
       import.meta.env.VITE_API_PUBLIC_KEY
     }`
   );
   const params = {
     hash: md5Hash.toString(),
-    ts: `${new Date().getTime()}`,
+    ts: `${new Date().getTime() + 1}`,
     apikey: import.meta.env.VITE_API_PUBLIC_KEY,
   };
 
