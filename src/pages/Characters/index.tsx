@@ -18,7 +18,7 @@ const { Meta } = Card;
 export const Characters = () => {
   const { t } = useTranslation();
   const mobile = useMediaQuery({ maxWidth: 750 });
-
+  document.title = `${t("menu.characters")} | Fpass Marvel`;
   const [query, setQuery] = useState<CharactersQuery>({
     limit: 100,
     orderBy: "name",
@@ -146,14 +146,18 @@ export const Characters = () => {
                 transition: { duration: 0.5 },
               }}
               whileTap={{ scale: 1.1, margin: 10 }}
-              transition={{bounce: 0.6, type: "spring"}}
+              transition={{ bounce: 0.6, type: "spring" }}
             >
               <Card
                 loading={isFetching}
                 hoverable
                 onClick={
                   !isFetching
-                    ? () => setTimeout(() => navigate(`/character/${character.id}`), 200) 
+                    ? () =>
+                        setTimeout(
+                          () => navigate(`/character/${character.id}`),
+                          200
+                        )
                     : undefined
                 }
                 style={{ width: mobile ? "80vw" : 240 }}

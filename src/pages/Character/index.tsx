@@ -19,6 +19,7 @@ export const Character = () => {
   const { character, refetch, isFetching } = useGetCharacter(id);
   const { comicsColection, comicsColectionRefetch } = useGetComicsColection(id);
   const { seriesColection, seriesColectionRefetch } = useGetSeriesColection(id);
+  document.title = `${character?.name ?? ""} | Fpass Marvel`;
 
   const [cache] = useState<any>(queryClient.getQueryData(["character"]));
   const [visible, setVisible] = useState(false);
