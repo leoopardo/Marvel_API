@@ -56,7 +56,6 @@ export const Characters = () => {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
       }}
     >
@@ -102,9 +101,12 @@ export const Characters = () => {
             </Button>
           </Space.Compact>
         </Col>
+        
       </StyledRow>
 
-      {characters?.total === 0 && !isError && (
+      
+      <div style={{height: "90vh"}}>
+         {characters?.total === 0 && !isError && (
         <Result
           icon={<img src={noRecords} style={{ width: "60%" }} />}
           title={<p style={{ color: defaultTheme.colors.text }}>400</p>}
@@ -128,6 +130,8 @@ export const Characters = () => {
           style={{ color: defaultTheme.colors.text }}
         />
       )}
+      </div>
+
 
       <StyledSpaceCards ref={divRef} direction="vertical" size="large">
         {isFetching &&

@@ -7,7 +7,7 @@ export const StyledRow = styled(Row)(() => ({
   flexDirection: "row",
   justifyContent: "start",
   alignItems: "center",
-  marginBottom: "20px",
+
   paddingLeft: "2%",
 }));
 
