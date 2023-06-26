@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CharactersQuery } from "../../service/types/characters/characters.interface";
 import { useGetCharacters } from "../../service/characters/getCharacters";
-import { Card, Space, Input, Result, Col, Row, Button } from "antd";
+import { Card, Space, Input, Result, Col, Button } from "antd";
 import noRecords from "../../assets/noRecords.png";
 import Error from "../../assets/error.png";
 import { useDebounce } from "../../utils/useDebounce";
