@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { CharactersData } from "../types/characters/characters.interface";
 import { api } from "../../configs/api";
 import md5 from "md5";
+import { ComicsData } from "../types/characters/colections/comics";
 
-export function useGetCharacter(id?: string) {
+export function useGetComicsColection(id?: string) {
   const md5Hash = md5(
     `${new Date().getTime()}${import.meta.env.VITE_API_PRIVATE_KEY}${
       import.meta.env.VITE_API_PUBLIC_KEY
@@ -16,23 +16,25 @@ export function useGetCharacter(id?: string) {
   };
 
   const { data, isFetching, error, refetch } = useQuery<
-    CharactersData | null | undefined
+    ComicsData | null | undefined
   >(
-    "character",
+    "comicsColection",
     async () => {
-      const response = await api.get(`characters/${id}`, {
+      const response = await api.get(`characters/${id}/comics`, {
         params,
       });
       return response.data;
     },
-    { keepPreviousData: true }
+    { keepPreviousData: true, retry: 5 }
   );
-  const character = data?.data.results[0];
-
+  const comicsColection = data;
+  const comicsColectionFetching = isFetching;
+  const comicsColectionError = error;
+  const comicsColectionRefetch = refetch;
   return {
-    character,
-    isFetching,
-    error,
-    refetch,
+    comicsColection,
+    comicsColectionFetching,
+    comicsColectionError,
+    comicsColectionRefetch,
   };
 }

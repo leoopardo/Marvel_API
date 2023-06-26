@@ -2,7 +2,10 @@
   "menu": {
     "characters": "Personagens",
     "comics": "Quadrinhos",
-    "movies": "Filmes"
+    "movies": "Filmes",
+    "language": "Idioma",
+    "english": "Inglês",
+    "portuguese": "Português"
   },
   "messages": {
     "404": "Desculpe, a página que você visitou não existe",
@@ -11,5 +14,8 @@
   },
   "input": {
     "search": "Perquisar personagem"
+  },
+  "button": {
+    "remove_filters": "Remover filtros"
   }
 }

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CharactersQuery } from "../../service/types/characters/characters.interface";
 import { useGetCharacters } from "../../service/characters/getCharacters";
-import { Card, Space, Input, Result, Col, Row } from "antd";
+import { Card, Space, Input, Result, Col, Row, Button } from "antd";
 import noRecords from "../../assets/noRecords.png";
 import Error from "../../assets/error.png";
 import { useDebounce } from "../../utils/useDebounce";
@@ -16,18 +16,25 @@ const { Meta } = Card;
 export const Characters = () => {
   const { t } = useTranslation();
   const mobile = useMediaQuery({ maxWidth: 750 });
-  const isFetchingArray = new Array(25).fill(null);
-  const divRef = useRef<any>(null);
-  const navigate = useNavigate();
+
   const [query, setQuery] = useState<CharactersQuery>({
     limit: 100,
     orderBy: "name",
   });
+  const [search, setSearch] = useState<string>("");
+
+  const isFetchingArray = new Array(25).fill(null);
+  const divRef = useRef<any>(null);
+  const searchRef = useRef<any>("");
+  const navigate = useNavigate();
   const { characters, isError, isFetching, refetch } = useGetCharacters(query);
   const { debounce } = useDebounce(setQuery, "nameStartsWith");
+  const queryRef = useRef<CharactersQuery>(query);
 
   useEffect(() => {
-    refetch();
+    if (queryRef.current !== query) {
+      refetch();
+    }
   }, [query]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,16 +69,44 @@ export const Characters = () => {
           paddingLeft: "2%",
         }}
       >
-        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-          <Input
+        {" "}
+        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+          <Space.Compact
+            style={{ width: "100%" }}
+            block
+            direction="horizontal"
             size="large"
-            placeholder={t("input.search")}
-            onChange={handleChange}
-          />
+          >
+            <Input
+              ref={searchRef}
+              style={{ width: "60%" }}
+              size="large"
+              placeholder={t("input.search")}
+              onChange={handleChange}
+            />
+            <Button
+              style={{ width: "40%" }}
+              size="large"
+              type="primary"
+              onClickCapture={() => {
+                delete query.nameStartsWith;
+                setQuery({
+                  limit: 100,
+                  orderBy: "name",
+                });
+                refetch();
+                setSearch("");
+                searchRef.current.input.value = ""
+                searchRef.current.input.defaultValue = ""
+              }}
+            >
+              {t("button.remove_filters")}
+            </Button>
+          </Space.Compact>
         </Col>
       </Row>
 
-      {characters?.total === 0 && (
+      {characters?.total === 0 && !isError && (
         <Result
           icon={<img src={noRecords} style={{ width: "60%" }} />}
           title={<p style={{ color: defaultTheme.colors.text }}>400</p>}

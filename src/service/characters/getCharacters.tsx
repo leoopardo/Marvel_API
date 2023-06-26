@@ -18,12 +18,16 @@ export function useGetCharacters(params: CharactersQuery) {
 
   const { data, isFetching, isError, refetch } = useQuery<
     CharactersData | null | undefined
-  >("characters", async () => {
-    const response = await api.get("characters", {
-      params,
-    });
-    return response.data;
-  });
+  >(
+    "characters",
+    async () => {
+      const response = await api.get("characters", {
+        params,
+      });
+      return response.data;
+    },
+    { keepPreviousData: true, staleTime: 5000 }
+  );
   const characters = data?.data;
 
   return {

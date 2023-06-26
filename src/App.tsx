@@ -21,7 +21,7 @@ function App() {
               token: {
                 colorPrimary: defaultTheme.colors.secondary,
                 colorBgTextHover: defaultTheme.colors.secondary,
-
+    
               },
             }}
           >
@@ -29,7 +29,6 @@ function App() {
               <AppSidebar />
               <Content
                 style={{
-                  padding: "24px",
                   marginLeft: mobile ? undefined : "50px",
                   minHeight: 280,
                   backgroundColor: "#202020",
